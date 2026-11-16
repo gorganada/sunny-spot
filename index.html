@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" content="#f3dfc0">
+  <title>Sunny Spot</title>
+  <style>
+    html, body { margin: 0; height: 100%; background: #f3dfc0; overflow: hidden; touch-action: none; -webkit-user-select: none; user-select: none; }
+    #unity-canvas { position: fixed; inset: 0; width: 100vw; height: 100vh; height: 100dvh; display: block; background: #f3dfc0; outline: none; }
+    #durum { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; color: #e6dfd0; font: 18px Georgia, serif; }
+  </style>
+</head>
+<body>
+  <canvas id="unity-canvas" tabindex="-1"></canvas>
+  <div id="durum">Dolmuş geliyor…</div>
+  <script>
+    // tam pencere tuval (Unity'nin varsayılan şablonu 960x600 sabit kutu, telefonda arayüzün üstü taşıyordu)
+    var buildUrl = "Build";
+    var s = document.createElement("script");
+    s.src = buildUrl + "/556eee9f72257c56cf4de70c568907f0.loader.js";
+    s.onload = function () {
+      createUnityInstance(document.getElementById("unity-canvas"), {
+        dataUrl: buildUrl + "/ea26ff7c5e32f9fc197396b510c87f62.data.unityweb",
+        frameworkUrl: buildUrl + "/a4f05b85f02475f32fe17e47a05a3f8e.framework.js.unityweb",
+        codeUrl: buildUrl + "/61a77199c4b7f4a8b5eba140c4f46e46.wasm.unityweb",
+        companyName: "Agorga",
+        productName: "Sunny Spot",
+        productVersion: "0.1.0",
+        devicePixelRatio: Math.min(window.devicePixelRatio || 1, 2),
+      }, function (p) { document.getElementById("durum").textContent = "Dolmuş geliyor… %" + Math.round(p * 100); })
+      .then(function (u) { window.unityInstance = u; document.getElementById("durum").remove(); })
+      .catch(function (m) { document.getElementById("durum").textContent = "Hata: " + m; });
+    };
+    document.body.appendChild(s);
+  </script>
+</body>
+</html>
