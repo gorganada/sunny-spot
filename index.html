@@ -18,15 +18,15 @@
     // tam pencere tuval (Unity'nin varsayılan şablonu 960x600 sabit kutu, telefonda arayüzün üstü taşıyordu)
     var buildUrl = "Build";
     var s = document.createElement("script");
-    s.src = buildUrl + "/3b85b213fee1d376476020007b706246.loader.js";
+    s.src = buildUrl + "/366fbf990d91772b0f7fb8238d815157.loader.js";
     s.onload = function () {
       createUnityInstance(document.getElementById("unity-canvas"), {
-        dataUrl: buildUrl + "/03f6987926fd57da66be5a65fe5a6263.data.unityweb",
+        dataUrl: buildUrl + "/13d4c9ea51d0452756cb6e3044ef7254.data.unityweb",
         frameworkUrl: buildUrl + "/a4f05b85f02475f32fe17e47a05a3f8e.framework.js.unityweb",
-        codeUrl: buildUrl + "/8bce82e48a04a88777f3037df7d55bc4.wasm.unityweb",
+        codeUrl: buildUrl + "/c2c3c0143a8033411f827380781c8a16.wasm.unityweb",
         companyName: "Agorga",
         productName: "Sunny Spot",
-        productVersion: "0.2.0",
+        productVersion: "0.3.0",
         devicePixelRatio: Math.min(window.devicePixelRatio || 1, 2),
       }, function (p) { document.getElementById("durum").textContent = "Dolmuş geliyor… %" + Math.round(p * 100); })
       .then(function (u) { window.unityInstance = u; document.getElementById("durum").remove(); })
