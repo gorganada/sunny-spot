@@ -17,6 +17,11 @@
   <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" type="image/png" href="ikon.png">
   <link rel="apple-touch-icon" href="ikon.png">
+  <!-- "ana ekrana ekle": telefonda tam ekran açılır -->
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Sunny Spot">
   <style>
     html, body { margin: 0; height: 100%; background: #f3dfc0; overflow: hidden; touch-action: none; -webkit-user-select: none; user-select: none; }
     #unity-canvas { position: fixed; inset: 0; width: 100vw; height: 100vh; height: 100dvh; display: block; background: #f3dfc0; outline: none; }
@@ -41,15 +46,15 @@
     yazi.textContent = tr ? "Kediler uyanıyor…" : es ? "Los gatos se despiertan…" : pt ? "Os gatos estão acordando…" : "Waking up the cats…";
     var buildUrl = "Build";
     var s = document.createElement("script");
-    s.src = buildUrl + "/76305be351e7cb38804fa2f813a69967.loader.js";
+    s.src = buildUrl + "/34a79b303e30cbae95710515a42b9dba.loader.js";
     s.onload = function () {
       createUnityInstance(document.getElementById("unity-canvas"), {
-        dataUrl: buildUrl + "/8af3bcac7e1f918786610167d25bbee5.data.unityweb",
+        dataUrl: buildUrl + "/567438d5db91fd3cfcf4309958e8376f.data.unityweb",
         frameworkUrl: buildUrl + "/a023f4fcb488f73402b578a7cb195929.framework.js.unityweb",
-        codeUrl: buildUrl + "/7bc7cbafcd82970fa0fef853e1d83e80.wasm.unityweb",
+        codeUrl: buildUrl + "/129f307ba485acecaab680b3851a02f1.wasm.unityweb",
         companyName: "Agorga",
         productName: "Sunny Spot",
-        productVersion: "0.9.6",
+        productVersion: "0.9.7",
         devicePixelRatio: Math.min(window.devicePixelRatio || 1, 2),
       }, function (p) { dolu.style.width = Math.round(p * 100) + "%"; })
       .then(function (u) { window.unityInstance = u; durum.style.opacity = 0; setTimeout(function () { durum.remove(); }, 400); })
