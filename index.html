@@ -32,25 +32,27 @@
   <div id="durum"><img src="ikon.png" alt=""><div id="yazi"></div><div id="cubuk"><div id="dolu"></div></div></div>
   <script>
     // tam pencere tuval (Unity'nin varsayılan şablonu 960x600 sabit kutu, telefonda arayüzün üstü taşıyordu)
-    var tr = /^tr/i.test(navigator.language || "") || /[?&]dil=tr/.test(location.search);
-    document.documentElement.lang = tr ? "tr" : "en";
+    var q = location.search, nl = navigator.language || "";
+    var tr = /[?&]dil=tr/.test(q) || (!/[?&]dil=/.test(q) && /^tr/i.test(nl));
+    var es = /[?&]dil=es/.test(q) || (!/[?&]dil=/.test(q) && /^es/i.test(nl));
+    document.documentElement.lang = tr ? "tr" : es ? "es" : "en";
     var yazi = document.getElementById("yazi"), dolu = document.getElementById("dolu"), durum = document.getElementById("durum");
-    yazi.textContent = tr ? "Kediler uyanıyor…" : "Waking up the cats…";
+    yazi.textContent = tr ? "Kediler uyanıyor…" : es ? "Los gatos se despiertan…" : "Waking up the cats…";
     var buildUrl = "Build";
     var s = document.createElement("script");
-    s.src = buildUrl + "/04c5c11dbb13bff850339694fd23bc0c.loader.js";
+    s.src = buildUrl + "/b5960bc9755d4b4cf54ddef1971d76bc.loader.js";
     s.onload = function () {
       createUnityInstance(document.getElementById("unity-canvas"), {
-        dataUrl: buildUrl + "/8662a81ba2d0f1d7d44ca6a20344c736.data.unityweb",
+        dataUrl: buildUrl + "/75be13d3182567730a50ebac0bd4f64c.data.unityweb",
         frameworkUrl: buildUrl + "/a4f05b85f02475f32fe17e47a05a3f8e.framework.js.unityweb",
-        codeUrl: buildUrl + "/f4494ca7a6628ad10c522221abee2029.wasm.unityweb",
+        codeUrl: buildUrl + "/d4e16da6cd40d09d88ac17efbb1da897.wasm.unityweb",
         companyName: "Agorga",
         productName: "Sunny Spot",
-        productVersion: "0.8.2",
+        productVersion: "0.8.3",
         devicePixelRatio: Math.min(window.devicePixelRatio || 1, 2),
       }, function (p) { dolu.style.width = Math.round(p * 100) + "%"; })
       .then(function (u) { window.unityInstance = u; durum.style.opacity = 0; setTimeout(function () { durum.remove(); }, 400); })
-      .catch(function (m) { yazi.textContent = (tr ? "Oyun açılamadı: " : "Could not start: ") + m; });
+      .catch(function (m) { yazi.textContent = (tr ? "Oyun açılamadı: " : es ? "No se pudo abrir: " : "Could not start: ") + m; });
     };
     document.body.appendChild(s);
   </script>
