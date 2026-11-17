@@ -35,24 +35,25 @@
     var q = location.search, nl = navigator.language || "";
     var tr = /[?&]dil=tr/.test(q) || (!/[?&]dil=/.test(q) && /^tr/i.test(nl));
     var es = /[?&]dil=es/.test(q) || (!/[?&]dil=/.test(q) && /^es/i.test(nl));
-    document.documentElement.lang = tr ? "tr" : es ? "es" : "en";
+    var pt = /[?&]dil=pt/.test(q) || (!/[?&]dil=/.test(q) && /^pt/i.test(nl));
+    document.documentElement.lang = tr ? "tr" : es ? "es" : pt ? "pt" : "en";
     var yazi = document.getElementById("yazi"), dolu = document.getElementById("dolu"), durum = document.getElementById("durum");
-    yazi.textContent = tr ? "Kediler uyanıyor…" : es ? "Los gatos se despiertan…" : "Waking up the cats…";
+    yazi.textContent = tr ? "Kediler uyanıyor…" : es ? "Los gatos se despiertan…" : pt ? "Os gatos estão acordando…" : "Waking up the cats…";
     var buildUrl = "Build";
     var s = document.createElement("script");
-    s.src = buildUrl + "/e5e80fc1124f07964120d3f9a0c253f4.loader.js";
+    s.src = buildUrl + "/76305be351e7cb38804fa2f813a69967.loader.js";
     s.onload = function () {
       createUnityInstance(document.getElementById("unity-canvas"), {
-        dataUrl: buildUrl + "/ca948278cbfc1005fdf4bb842a7f4e6e.data.unityweb",
+        dataUrl: buildUrl + "/f76bf45c2ceea516fd9c29b1e8bc52ce.data.unityweb",
         frameworkUrl: buildUrl + "/a023f4fcb488f73402b578a7cb195929.framework.js.unityweb",
-        codeUrl: buildUrl + "/f92208d51a55a60983e1ee9a69b36fb9.wasm.unityweb",
+        codeUrl: buildUrl + "/7bc7cbafcd82970fa0fef853e1d83e80.wasm.unityweb",
         companyName: "Agorga",
         productName: "Sunny Spot",
-        productVersion: "0.9.4",
+        productVersion: "0.9.5",
         devicePixelRatio: Math.min(window.devicePixelRatio || 1, 2),
       }, function (p) { dolu.style.width = Math.round(p * 100) + "%"; })
       .then(function (u) { window.unityInstance = u; durum.style.opacity = 0; setTimeout(function () { durum.remove(); }, 400); })
-      .catch(function (m) { yazi.textContent = (tr ? "Oyun açılamadı: " : es ? "No se pudo abrir: " : "Could not start: ") + m; });
+      .catch(function (m) { yazi.textContent = (tr ? "Oyun açılamadı: " : es ? "No se pudo abrir: " : pt ? "Não foi possível abrir: " : "Could not start: ") + m; });
     };
     document.body.appendChild(s);
   </script>
