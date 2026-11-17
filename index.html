@@ -44,12 +44,12 @@
     s.src = buildUrl + "/76305be351e7cb38804fa2f813a69967.loader.js";
     s.onload = function () {
       createUnityInstance(document.getElementById("unity-canvas"), {
-        dataUrl: buildUrl + "/f76bf45c2ceea516fd9c29b1e8bc52ce.data.unityweb",
+        dataUrl: buildUrl + "/8af3bcac7e1f918786610167d25bbee5.data.unityweb",
         frameworkUrl: buildUrl + "/a023f4fcb488f73402b578a7cb195929.framework.js.unityweb",
         codeUrl: buildUrl + "/7bc7cbafcd82970fa0fef853e1d83e80.wasm.unityweb",
         companyName: "Agorga",
         productName: "Sunny Spot",
-        productVersion: "0.9.5",
+        productVersion: "0.9.6",
         devicePixelRatio: Math.min(window.devicePixelRatio || 1, 2),
       }, function (p) { dolu.style.width = Math.round(p * 100) + "%"; })
       .then(function (u) { window.unityInstance = u; durum.style.opacity = 0; setTimeout(function () { durum.remove(); }, 400); })
