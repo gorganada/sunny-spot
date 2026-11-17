@@ -1,36 +1,56 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
   <meta name="theme-color" content="#f3dfc0">
-  <title>Sunny Spot</title>
+  <title>Sunny Spot · Cat Nap Puzzle</title>
+  <meta name="description" content="A cozy cat puzzle: find every cat a sunny spot to nap. 80 puzzles in 8 rooms, a Daily Nap and Endless Naps. Free, no sign-in.">
+  <!-- link önizlemesi (WhatsApp, Instagram, X) -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Sunny Spot · Cat Nap Puzzle">
+  <meta property="og:description" content="Find every cat a sunny spot to nap. Grumpy pairs, jealous rivals and adoring fans: 80 cozy puzzles, plays in your browser.">
+  <meta property="og:url" content="https://gorganada.github.io/sunny-spot/">
+  <meta property="og:image" content="https://gorganada.github.io/sunny-spot/kapak.png">
+  <meta property="og:image:width" content="1024">
+  <meta property="og:image:height" content="500">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/png" href="ikon.png">
+  <link rel="apple-touch-icon" href="ikon.png">
   <style>
     html, body { margin: 0; height: 100%; background: #f3dfc0; overflow: hidden; touch-action: none; -webkit-user-select: none; user-select: none; }
     #unity-canvas { position: fixed; inset: 0; width: 100vw; height: 100vh; height: 100dvh; display: block; background: #f3dfc0; outline: none; }
-    #durum { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; color: #e6dfd0; font: 18px Georgia, serif; }
+    #durum { position: fixed; inset: 0; display: flex; flex-direction: column; gap: 14px; align-items: center; justify-content: center; background: #f3dfc0;
+             color: #5a3420; font: 600 18px system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; transition: opacity .35s; }
+    #durum img { width: 96px; height: 96px; border-radius: 22px; box-shadow: 0 6px 18px rgba(90, 52, 32, .25); }
+    #cubuk { width: min(240px, 60vw); height: 10px; border-radius: 6px; background: rgba(90, 52, 32, .15); overflow: hidden; }
+    #dolu { width: 0; height: 100%; background: #ffb547; border-radius: 6px; transition: width .2s; }
   </style>
 </head>
 <body>
   <canvas id="unity-canvas" tabindex="-1"></canvas>
-  <div id="durum">Dolmuş geliyor…</div>
+  <div id="durum"><img src="ikon.png" alt=""><div id="yazi"></div><div id="cubuk"><div id="dolu"></div></div></div>
   <script>
     // tam pencere tuval (Unity'nin varsayılan şablonu 960x600 sabit kutu, telefonda arayüzün üstü taşıyordu)
+    var tr = /^tr/i.test(navigator.language || "") || /[?&]dil=tr/.test(location.search);
+    document.documentElement.lang = tr ? "tr" : "en";
+    var yazi = document.getElementById("yazi"), dolu = document.getElementById("dolu"), durum = document.getElementById("durum");
+    yazi.textContent = tr ? "Kediler uyanıyor…" : "Waking up the cats…";
     var buildUrl = "Build";
     var s = document.createElement("script");
     s.src = buildUrl + "/88913aef7a086e409b54b58a46c6cc39.loader.js";
     s.onload = function () {
       createUnityInstance(document.getElementById("unity-canvas"), {
-        dataUrl: buildUrl + "/d2cdc1586f62c86eb4e7971e757e5fe5.data.unityweb",
+        dataUrl: buildUrl + "/1112aef278b0023e2f82f6cf0b02b206.data.unityweb",
         frameworkUrl: buildUrl + "/a4f05b85f02475f32fe17e47a05a3f8e.framework.js.unityweb",
         codeUrl: buildUrl + "/6da444fc8288d1d0c1e8b2d3b63363e5.wasm.unityweb",
         companyName: "Agorga",
         productName: "Sunny Spot",
-        productVersion: "0.7.7",
+        productVersion: "0.7.8",
         devicePixelRatio: Math.min(window.devicePixelRatio || 1, 2),
-      }, function (p) { document.getElementById("durum").textContent = "Dolmuş geliyor… %" + Math.round(p * 100); })
-      .then(function (u) { window.unityInstance = u; document.getElementById("durum").remove(); })
-      .catch(function (m) { document.getElementById("durum").textContent = "Hata: " + m; });
+      }, function (p) { dolu.style.width = Math.round(p * 100) + "%"; })
+      .then(function (u) { window.unityInstance = u; durum.style.opacity = 0; setTimeout(function () { durum.remove(); }, 400); })
+      .catch(function (m) { yazi.textContent = (tr ? "Oyun açılamadı: " : "Could not start: ") + m; });
     };
     document.body.appendChild(s);
   </script>
