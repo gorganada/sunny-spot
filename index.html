@@ -40,15 +40,15 @@
     yazi.textContent = tr ? "Kediler uyanıyor…" : es ? "Los gatos se despiertan…" : "Waking up the cats…";
     var buildUrl = "Build";
     var s = document.createElement("script");
-    s.src = buildUrl + "/42501e378927984b8b95536f996d0a82.loader.js";
+    s.src = buildUrl + "/9804b0222708b285fcddd3013343eabf.loader.js";
     s.onload = function () {
       createUnityInstance(document.getElementById("unity-canvas"), {
-        dataUrl: buildUrl + "/0a8c8170d1caa3534449b8474dfc3109.data.unityweb",
+        dataUrl: buildUrl + "/d8f1c4d021a34a36347b2cadc582edbf.data.unityweb",
         frameworkUrl: buildUrl + "/a4f05b85f02475f32fe17e47a05a3f8e.framework.js.unityweb",
-        codeUrl: buildUrl + "/cb5cd8a251dd983f2c52f846f732eade.wasm.unityweb",
+        codeUrl: buildUrl + "/4536d9e3c65125cef8c52bf583fb3504.wasm.unityweb",
         companyName: "Agorga",
         productName: "Sunny Spot",
-        productVersion: "0.9.1",
+        productVersion: "0.9.2",
         devicePixelRatio: Math.min(window.devicePixelRatio || 1, 2),
       }, function (p) { dolu.style.width = Math.round(p * 100) + "%"; })
       .then(function (u) { window.unityInstance = u; durum.style.opacity = 0; setTimeout(function () { durum.remove(); }, 400); })
