@@ -42,19 +42,20 @@
     var es = /[?&]dil=es/.test(q) || (!/[?&]dil=/.test(q) && /^es/i.test(nl));
     var pt = /[?&]dil=pt/.test(q) || (!/[?&]dil=/.test(q) && /^pt/i.test(nl));
     document.documentElement.lang = tr ? "tr" : es ? "es" : pt ? "pt" : "en";
+    document.title = tr ? "Güneşli Köşe · Kedi Bulmacası" : es ? "Sunny Spot · Puzle de gatos" : pt ? "Sunny Spot · Quebra-cabeça de gatos" : "Sunny Spot · Cat Nap Puzzle";
     var yazi = document.getElementById("yazi"), dolu = document.getElementById("dolu"), durum = document.getElementById("durum");
     yazi.textContent = tr ? "Kediler uyanıyor…" : es ? "Los gatos se despiertan…" : pt ? "Os gatos estão acordando…" : "Waking up the cats…";
     var buildUrl = "Build";
     var s = document.createElement("script");
-    s.src = buildUrl + "/9d31db9dedb6da89389c9a86b51870b7.loader.js";
+    s.src = buildUrl + "/20d6544a9dd457d7301780d6c9523792.loader.js";
     s.onload = function () {
       createUnityInstance(document.getElementById("unity-canvas"), {
-        dataUrl: buildUrl + "/4376fb404f8014f865da4322a4735a3e.data.unityweb",
+        dataUrl: buildUrl + "/dd6aa4539e5e669f70691bb1ecc526d5.data.unityweb",
         frameworkUrl: buildUrl + "/90cbcf859a9ef2cc81a71829df8ae896.framework.js.unityweb",
-        codeUrl: buildUrl + "/3f633d99c39735cb24898f9c01d9f5ec.wasm.unityweb",
+        codeUrl: buildUrl + "/fd9582a3bda93c67d7993c7ccf3a484f.wasm.unityweb",
         companyName: "Agorga",
         productName: "Sunny Spot",
-        productVersion: "0.9.16",
+        productVersion: "0.9.17",
         devicePixelRatio: Math.min(window.devicePixelRatio || 1, 2),
       }, function (p) { dolu.style.width = Math.round(p * 100) + "%"; })
       .then(function (u) { window.unityInstance = u; durum.style.opacity = 0; setTimeout(function () { durum.remove(); }, 400); })
